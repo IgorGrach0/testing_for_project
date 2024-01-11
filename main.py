@@ -173,19 +173,12 @@ def new_test():
 
         Two_test.adding_new_question(ID_test, rec_queschen, rec_answerre_1, rec_answerre_2, rec_answerre_3, correct_answer, question_numbers)
 
-    def con_test():
-        ID_test = test_number
-        rec_queschen = str()
-        rec_answerre_1 = str()
-        rec_answerre_2 = str()
-        rec_answerre_3 = str()
+    def exit_for_test():
+        global contin
+        contin.destroy()
+        main_window()
 
-        rec_queschen = queschen_entry.get()
-        rec_answerre_1 = answer_entry_1.get()
-        rec_answerre_2 = answer_entry_2.get()
-        rec_answerre_3 = answer_entry_3.get()
-
-        print(rec_queschen, rec_answerre_1, rec_answerre_2, rec_answerre_3)
+        
 
 
         
@@ -252,7 +245,7 @@ def new_test():
         answer_entry_3.pack()
 
             # кнопка отправки формы
-        send_btn = Button(contin, text='Далее', command=con_test)
+        send_btn = Button(contin, text='Выйти в главное меню', command=exit_for_test)
         send_btn.pack(padx=5, pady=5)
 
         send_btn = Button(contin, text='Создать тест', command=exit_new_test_1)
