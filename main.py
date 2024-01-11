@@ -9,6 +9,7 @@ import random
 import string
 import os
 import sys
+import ScrolledText
 
 
 
@@ -211,29 +212,32 @@ def new_test():
 
         # метка для поля ввода имени
         queschen_label = Label(contin, text='Вопрос:', font=label_font, **base_padding)
-        queschen_label.pack()
+        queschen_label.pack(ipady=10)
 
-        queschen_entry = Entry(contin, bg='#fff', fg='#444', font=font_entry)
-        queschen_entry.pack()
+        textfield = ScrolledText.ScrolledText(rootWin)
+        textfield.pack(fill=BOTH, ipady=10)
+
+        '''queschen_entry = Entry(contin, bg='#fff', fg='#444', font=font_entry)
+        queschen_entry.pack(fill=BOTH, ipady=10)'''
 
         answer_label_1 = Label(contin, text='Ответ 1', font=label_font, **base_padding)
-        answer_label_1.pack()
+        answer_label_1.pack(ipady=10)
 
 
         answer_entry_1 = Entry(contin, bg='#fff', fg='#444', font=font_entry)
-        answer_entry_1.pack()
+        answer_entry_1.pack(fill=X, ipady=10)
 
         answer_label_2 = Label(contin, text='Ответ 2', font=label_font, **base_padding)
-        answer_label_2.pack()
+        answer_label_2.pack(ipady=10)
 
         answer_entry_2 = Entry(contin, bg='#fff', fg='#444', font=font_entry)
-        answer_entry_2.pack()
+        answer_entry_2.pack(fill=X, ipady=10)
 
         answer_label_3 = Label(contin, text='Ответ 3', font=label_font, **base_padding)
-        answer_label_3.pack()
+        answer_label_3.pack(ipady=10)
 
         answer_entry_3 = Entry(contin, bg='#fff', fg='#444', font=font_entry)
-        answer_entry_3.pack()
+        answer_entry_3.pack(fill=X, ipady=10)
 
             # кнопка отправки формы
         send_btn = Button(contin, text='Выйти в главное меню', command=exit_for_test)
@@ -241,18 +245,18 @@ def new_test():
 
         
         main_label = Label(contin, text='Правильный ответ:', font=font_header, justify=CENTER, **header_padding)
-        main_label.place(x=605, y=30, width=300)
+        main_label.place(x=300, y=450, width=300)
 
-        place_for_x_button_correct_answere = 660
+        place_for_x_button_correct_answere = 355
 
         send_btn = Button(contin, text='№1', command=correct_answer_1)
-        send_btn.place(x=place_for_x_button_correct_answere, y=80, width=50)
+        send_btn.place(x=place_for_x_button_correct_answere, y=500, width=50)
 
         send_btn = Button(contin, text='№2', command=correct_answer_2)
-        send_btn.place(x=place_for_x_button_correct_answere + 70, y=80, width=50)
+        send_btn.place(x=place_for_x_button_correct_answere + 70, y=500, width=50)
 
         send_btn = Button(contin, text='№3', command=correct_answer_3)
-        send_btn.place(x=place_for_x_button_correct_answere + 140, y=80, width=50)
+        send_btn.place(x=place_for_x_button_correct_answere + 140, y=500, width=50)
 
 
         contin.mainloop()
