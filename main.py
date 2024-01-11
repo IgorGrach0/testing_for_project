@@ -9,7 +9,7 @@ import random
 import string
 import os
 import sys
-import ScrolledText
+
 
 
 
@@ -214,11 +214,8 @@ def new_test():
         queschen_label = Label(contin, text='Вопрос:', font=label_font, **base_padding)
         queschen_label.pack(ipady=10)
 
-        textfield = ScrolledText.ScrolledText(rootWin)
-        textfield.pack(fill=BOTH, ipady=10)
-
-        '''queschen_entry = Entry(contin, bg='#fff', fg='#444', font=font_entry)
-        queschen_entry.pack(fill=BOTH, ipady=10)'''
+        queschen_entry = Entry(contin, bg='#fff', fg='#444', font=font_entry)
+        queschen_entry.pack(fill=X, ipady=10)
 
         answer_label_1 = Label(contin, text='Ответ 1', font=label_font, **base_padding)
         answer_label_1.pack(ipady=10)
@@ -331,9 +328,73 @@ def new_test():
     '''Two_test.new_tests(user)'''
 
 
+def back_menu_test_available():
+    global available_w
+
+    available_w.destroy()
+    main_window()
+
 
 def test_available():
-    print("test_available")
+    def go_test_aviable():
+        global go_tests_entry
+        go_tests = go_tests_entry.get()
+        go_tests = str(go_tests)
+        print(go_tests.isdigit())
+        if go_tests.isdigit() == True:
+            take_test_ID = go_tests
+            print('Строка состоит только из цифр')
+            result_check_ID = Two_test.take_test_aviable(take_test_ID)
+
+            if result_check_ID == True:
+                print('')
+                print('существует')
+                print('')
+
+            else:
+                print('')
+                print('не существует')
+                print('')
+
+
+        else:
+            print('строка содержит символы')
+
+
+
+    global go_tests_entry
+    global available_w
+    global main_w
+
+    main_w.destroy()
+
+    transition = 'Пройти тест'
+    font_header = ('Arial', 15)
+    font_entry = ('Arial', 12)
+    label_font = ('Arial', 11)
+    base_padding = {'padx': 10, 'pady': 8}
+    header_padding = {'padx': 10, 'pady': 12}
+
+    available_w = Tk()
+    available_w.title('Пройти тест')
+    # размер окна
+    available_w.geometry('680x400')
+    # можно ли изменять размер окна - нет
+    available_w.resizable(False, False)
+
+    go_tests_label = Label(available_w, text='Введите ID теста', font=label_font, **base_padding)
+    go_tests_label.place(x=200, y=120, width=250)
+
+    go_tests_entry = Entry(available_w, bg='#fff', fg='#444', font=font_entry)
+    go_tests_entry.place(x=50, y=170, width=600)
+    
+    send_btn = Button(available_w, text='Пройти тест', command=go_test_aviable)
+    send_btn.place(x=470, y=320, width=200)
+
+    send_btn2 = Button(available_w, text='В меню', command=back_menu_test_available)
+    send_btn2.place(x=500, y=10, width=150)
+    available_w.mainloop()
+    
 
 
 #основное окно

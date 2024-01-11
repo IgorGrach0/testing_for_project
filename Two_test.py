@@ -187,4 +187,19 @@ def adding_new_question(ID_test, rec_queschen, rec_answerre_1, rec_answerre_2, r
 
 
 
+def take_test_aviable(take_test_ID):
+    import sqlite3
+
+    con = sqlite3.connect('tests.db')
+    cur = con.cursor()
+    
+    cur.execute("SELECT * FROM tests WHERE IDtests = ?", (take_test_ID))
+    result = cur.fetchone()
+
+    if result:
+        return True
+    
+    else:
+        return False
+
 
