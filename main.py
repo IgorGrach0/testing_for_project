@@ -178,17 +178,8 @@ def new_test():
         contin.destroy()
         main_window()
 
-        
 
-
-        
-        print('con_test')
-        '''contin.destroy()
-        continue_new_test(ID_test)'''
-
-
-    def exit_new_test_1():
-        print("exit_new_test")
+    
 
 
     def continue_new_test(ID_test):
@@ -246,23 +237,22 @@ def new_test():
 
             # кнопка отправки формы
         send_btn = Button(contin, text='Выйти в главное меню', command=exit_for_test)
-        send_btn.pack(padx=5, pady=5)
+        send_btn.place(x=650, y=10, width=200)
 
-        send_btn = Button(contin, text='Создать тест', command=exit_new_test_1)
-        send_btn.pack(padx=5, pady=5)
-
+        
         main_label = Label(contin, text='Правильный ответ:', font=font_header, justify=CENTER, **header_padding)
-        # помещаем виджет в окно по принципу один виджет под другим
-        main_label.pack()
+        main_label.place(x=605, y=30, width=300)
+
+        place_for_x_button_correct_answere = 660
 
         send_btn = Button(contin, text='№1', command=correct_answer_1)
-        send_btn.pack(padx=5, pady=5)
+        send_btn.place(x=place_for_x_button_correct_answere, y=80, width=50)
 
         send_btn = Button(contin, text='№2', command=correct_answer_2)
-        send_btn.pack(padx=5, pady=5)
+        send_btn.place(x=place_for_x_button_correct_answere + 70, y=80, width=50)
 
         send_btn = Button(contin, text='№3', command=correct_answer_3)
-        send_btn.pack(padx=5, pady=5)
+        send_btn.place(x=place_for_x_button_correct_answere + 140, y=80, width=50)
 
 
         contin.mainloop()
@@ -340,6 +330,7 @@ def new_test():
 
 def test_available():
     print("test_available")
+
 
 #основное окно
 def main_window():
