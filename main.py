@@ -14,7 +14,9 @@ import sys
 
 
 global question_number
+global check_question_numbers
 question_numbers = 0
+check_question_numbers = 0
 
 transition = '0'
 
@@ -349,9 +351,36 @@ def test_available():
             result_check_ID = Two_test.take_test_aviable(take_test_ID)
 
             if result_check_ID == True:
+                global available_w
+                global check_question_numbers
                 print('')
                 print('существует')
                 print('')
+
+
+                check_question_numbers += 1
+                
+                available_w.destroy()
+
+                go_exist_test = Tk()
+                go_exist_test.title('Пройти тест')
+                # размер окна
+                go_exist_test.geometry('680x400')
+                # можно ли изменять размер окна - нет
+                go_exist_test.resizable(False, False)
+
+                for_queschen = Label(go_exist_test, text='Введите ID теста', font=label_font, **base_padding)
+                for_queschen.place(x=200, y=120, width=250)
+
+
+                send_btn = Button(go_exist_test, text='Пройти тест', command=back_menu_test_available)
+                send_btn.place(x=470, y=320, width=200)
+
+                send_btn2 = Button(go_exist_test, text='В меню', command=back_menu_test_available)
+                send_btn2.place(x=500, y=10, width=150)
+                go_exist_test.mainloop()
+
+                
 
             else:
                 print('')
