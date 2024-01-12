@@ -340,10 +340,12 @@ def test_available():
         global go_tests_entry
         go_tests = go_tests_entry.get()
         go_tests = str(go_tests)
+        print(go_tests)
         print(go_tests.isdigit())
         if go_tests.isdigit() == True:
             take_test_ID = go_tests
             print('Строка состоит только из цифр')
+            print(take_test_ID)
             result_check_ID = Two_test.take_test_aviable(take_test_ID)
 
             if result_check_ID == True:

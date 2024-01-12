@@ -192,9 +192,13 @@ def take_test_aviable(take_test_ID):
 
     con = sqlite3.connect('tests.db')
     cur = con.cursor()
+    test_ID = int(take_test_ID)
     
-    cur.execute("SELECT * FROM tests WHERE IDtests = ?", (take_test_ID))
+    print(test_ID)
+    
+    cur.execute("SELECT * FROM tests WHERE IDtests = ?", (test_ID,))
     result = cur.fetchone()
+    con.commit()
 
     if result:
         return True
