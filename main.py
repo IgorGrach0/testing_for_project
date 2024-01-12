@@ -356,11 +356,13 @@ def test_available():
                 print('')
                 print('существует')
                 print('')
+                
+                available_w.destroy()
 
 
                 check_question_numbers += 1
                 
-                list_question_answer = qavailable_w.destroy(take_test_ID, check_question_numbers)
+                list_question_answer = Two_test.conclusion_questions(take_test_ID, check_question_numbers)
 
 
                 go_exist_test = Tk()
