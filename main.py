@@ -360,7 +360,8 @@ def test_available():
 
                 check_question_numbers += 1
                 
-                available_w.destroy()
+                list_question_answer = qavailable_w.destroy(take_test_ID, check_question_numbers)
+
 
                 go_exist_test = Tk()
                 go_exist_test.title('Пройти тест')
@@ -369,7 +370,7 @@ def test_available():
                 # можно ли изменять размер окна - нет
                 go_exist_test.resizable(False, False)
 
-                for_queschen = Label(go_exist_test, text='Введите ID теста', font=label_font, **base_padding)
+                for_queschen = Label(go_exist_test, text=list_question_answer[0], font=label_font, **base_padding)
                 for_queschen.place(x=200, y=120, width=250)
 
 

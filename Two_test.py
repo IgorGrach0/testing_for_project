@@ -205,5 +205,19 @@ def take_test_aviable(take_test_ID):
     
     else:
         return False
+    
+def conclusion_questions(take_test_ID, check_question_numbers):
+    import sqlite3
+    
+    con = sqlite3.connect('all_tests.db')
+    cur = con.cursor()
+    
+    query = f"SELECT * FROM таблица WHERE IDtests = ? AND question_numbers = ?"
+    cur.execute(query, (take_test_ID, check_question_numbers))
+    data = cur.fetchall()
+    data_list = []
+    for row in data:
+        data_list.append(row)
+    print(data_list)
 
-
+    return data_list
