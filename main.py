@@ -375,14 +375,41 @@ def test_available():
                 for_queschen = Label(go_exist_test, text=list_question_answer[2], font=label_font, **base_padding)
                 for_queschen.place(x=200, y=70, width=250)
 
-                for_answere_1 = Label(go_exist_test, text=list_question_answer[3], font=label_font, **base_padding)
-                for_answere_1.place(x=73, y=110, width=500)
+                if list_question_answer[3] != '':
 
-                for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
-                for_answere_2.place(x=73, y=150, width=500)
+                    for_answere_1 = Label(go_exist_test, text=list_question_answer[3], font=label_font, **base_padding)
+                    for_answere_1.place(x=73, y=110, width=500)
 
-                for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
-                for_answere_2.place(x=73, y=190, width=500)
+                    if list_question_answer[4] != '':
+
+                        for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
+                        for_answere_2.place(x=73, y=150, width=500)
+
+                        if list_question_answer[5] != '': 
+
+                            for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                            for_answere_2.place(x=73, y=190, width=500)
+                    
+                    else:
+                        for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                        for_answere_2.place(x=73, y=150, width=500)
+                    
+
+                else:
+                    if list_question_answer[4] != '':
+                        for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
+                        for_answere_2.place(x=73, y=110, width=500)
+
+                        if list_question_answer[5] != '':
+                            for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                            for_answere_2.place(x=73, y=150, width=500)
+
+                    else:
+                        if list_question_answer[5] != '':
+                            for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                            for_answere_2.place(x=73, y=110, width=500)
+
+                        
 
 
                 

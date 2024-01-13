@@ -223,7 +223,7 @@ def conclusion_questions(take_test_ID, check_question_numbers):
     data_list = data[0]
     '''for row in data:
         data_list.append(row)'''
-    print(type(data_list))
+    print(data_list)
     con.close()
 
     return data_list
