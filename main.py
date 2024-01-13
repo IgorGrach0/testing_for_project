@@ -15,6 +15,8 @@ import sys
 
 global question_number
 global check_question_numbers
+global check_answere_test
+check_answere_test = 1
 question_numbers = 0
 check_question_numbers = 0
 
@@ -338,10 +340,33 @@ def back_menu_test_available():
 
 
 def test_available():
+    def check_correct_answer_1():
+        global check_answere_test
+        check_answere_test = 0
+        print('check_correct_answer_1')
+        go_test_aviable()
+
+    def check_correct_answer_2():
+        global check_answere_test
+        check_answere_test = 0
+        print('check_correct_answer_2')
+        go_test_aviable()
+
+    def check_correct_answer_3():
+        global check_answere_test
+        check_answere_test = 0
+        print('check_correct_answer_3')
+        go_test_aviable()
+
+
     def go_test_aviable():
         global go_tests_entry
-        go_tests = go_tests_entry.get()
-        go_tests = str(go_tests)
+        global go_tests
+        global check_answere_test
+        
+        if check_answere_test != 0:
+            go_tests = go_tests_entry.get()
+            go_tests = str(go_tests)
         print(go_tests)
         print(go_tests.isdigit())
         if go_tests.isdigit() == True:
@@ -356,78 +381,93 @@ def test_available():
                 print('')
                 print('существует')
                 print('')
-                
-                available_w.destroy()
+
+                if check_answere_test != 0:                
+                    available_w.destroy()
 
 
                 check_question_numbers += 1
                 
                 list_question_answer = Two_test.conclusion_questions(take_test_ID, check_question_numbers)
 
+                
+                if list_question_answer != 0:
+                    go_exist_test = Tk()
+                    go_exist_test.title('Пройти тест')
+                    # размер окна
+                    go_exist_test.geometry('680x600')
+                    # можно ли изменять размер окна - нет
+                    go_exist_test.resizable(False, False)
 
-                go_exist_test = Tk()
-                go_exist_test.title('Пройти тест')
-                # размер окна
-                go_exist_test.geometry('680x400')
-                # можно ли изменять размер окна - нет
-                go_exist_test.resizable(False, False)
+                    for_queschen = Label(go_exist_test, text=list_question_answer[2], font=label_font, **base_padding)
+                    for_queschen.place(x=200, y=70, width=250)
 
-                for_queschen = Label(go_exist_test, text=list_question_answer[2], font=label_font, **base_padding)
-                for_queschen.place(x=200, y=70, width=250)
+                    if list_question_answer[3] != '':
 
-                if list_question_answer[3] != '':
+                        for_answere_1 = Label(go_exist_test, text=list_question_answer[3], font=label_font, **base_padding)
+                        for_answere_1.place(x=73, y=110, width=500)
 
-                    for_answere_1 = Label(go_exist_test, text=list_question_answer[3], font=label_font, **base_padding)
-                    for_answere_1.place(x=73, y=110, width=500)
+                        if list_question_answer[4] != '':
 
-                    if list_question_answer[4] != '':
-
-                        for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
-                        for_answere_2.place(x=73, y=150, width=500)
-
-                        if list_question_answer[5] != '': 
-
-                            for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
-                            for_answere_2.place(x=73, y=190, width=500)
-                    
-                    else:
-                        for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
-                        for_answere_2.place(x=73, y=150, width=500)
-                    
-
-                else:
-                    if list_question_answer[4] != '':
-                        for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
-                        for_answere_2.place(x=73, y=110, width=500)
-
-                        if list_question_answer[5] != '':
-                            for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                            for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
                             for_answere_2.place(x=73, y=150, width=500)
 
-                    else:
-                        if list_question_answer[5] != '':
+                            if list_question_answer[5] != '': 
+
+                                for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                                for_answere_2.place(x=73, y=190, width=500)
+                        
+                        else:
                             for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                            for_answere_2.place(x=73, y=150, width=500)
+                        
+
+                    else:
+                        if list_question_answer[4] != '':
+                            for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
                             for_answere_2.place(x=73, y=110, width=500)
+
+                            if list_question_answer[5] != '':
+                                for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                                for_answere_2.place(x=73, y=150, width=500)
+
+                        else:
+                            if list_question_answer[5] != '':
+                                for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                                for_answere_2.place(x=73, y=110, width=500)
 
                         
 
 
                 
 
-                send_btn2 = Button(go_exist_test, text='В меню', command=back_menu_test_available)
-                send_btn2.place(x=500, y=10, width=150)
-                go_exist_test.mainloop()
+                    send_btn2 = Button(go_exist_test, text='В меню', command=back_menu_test_available)
+                    send_btn2.place(x=500, y=10, width=150)
 
-                
+                    place_for_x_button_correct_answere = 355
+
+                    send_btn = Button(go_exist_test, text='№1', command=check_correct_answer_1)
+                    send_btn.place(x=place_for_x_button_correct_answere, y=500, width=50)
+
+                    send_btn = Button(go_exist_test, text='№2', command=check_correct_answer_2)
+                    send_btn.place(x=place_for_x_button_correct_answere + 70, y=500, width=50)
+
+                    send_btn = Button(go_exist_test, text='№3', command=check_correct_answer_3)
+                    send_btn.place(x=place_for_x_button_correct_answere + 140, y=500, width=50)
+
+
+                    go_exist_test.mainloop()
+
+                    
+
+                else:
+                    print('')
+                    print('не существует')
+                    print('')
+
 
             else:
-                print('')
-                print('не существует')
-                print('')
-
-
-        else:
-            print('строка содержит символы')
+                print('строка содержит символы')
 
 
 

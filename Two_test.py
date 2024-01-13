@@ -220,10 +220,15 @@ def conclusion_questions(take_test_ID, check_question_numbers):
     print(type(data))
     print('')
 
-    data_list = data[0]
-    '''for row in data:
-        data_list.append(row)'''
-    print(data_list)
-    con.close()
+    if data:
 
-    return data_list
+        data_list = data[0]
+        '''for row in data:
+            data_list.append(row)'''
+        print(data_list)
+        con.close()
+
+        return data_list
+    
+    else:
+        return 0
