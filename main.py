@@ -372,12 +372,20 @@ def test_available():
                 # можно ли изменять размер окна - нет
                 go_exist_test.resizable(False, False)
 
-                for_queschen = Label(go_exist_test, text=list_question_answer[0], font=label_font, **base_padding)
-                for_queschen.place(x=200, y=120, width=250)
+                for_queschen = Label(go_exist_test, text=list_question_answer[2], font=label_font, **base_padding)
+                for_queschen.place(x=200, y=70, width=250)
+
+                for_answere_1 = Label(go_exist_test, text=list_question_answer[3], font=label_font, **base_padding)
+                for_answere_1.place(x=73, y=110, width=500)
+
+                for_answere_2 = Label(go_exist_test, text=list_question_answer[4], font=label_font, **base_padding)
+                for_answere_2.place(x=73, y=150, width=500)
+
+                for_answere_2 = Label(go_exist_test, text=list_question_answer[5], font=label_font, **base_padding)
+                for_answere_2.place(x=73, y=190, width=500)
 
 
-                send_btn = Button(go_exist_test, text='Пройти тест', command=back_menu_test_available)
-                send_btn.place(x=470, y=320, width=200)
+                
 
                 send_btn2 = Button(go_exist_test, text='В меню', command=back_menu_test_available)
                 send_btn2.place(x=500, y=10, width=150)
