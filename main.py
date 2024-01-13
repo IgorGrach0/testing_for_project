@@ -344,6 +344,8 @@ def test_available():
         global check_answere_test
         check_answere_test = 0
 
+        
+
         global go_exist_test
         go_exist_test.destroy()
 
@@ -353,6 +355,8 @@ def test_available():
     def check_correct_answer_2():
         global check_answere_test
         check_answere_test = 0
+
+
 
         global go_exist_test
         go_exist_test.destroy()
