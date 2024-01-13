@@ -343,18 +343,30 @@ def test_available():
     def check_correct_answer_1():
         global check_answere_test
         check_answere_test = 0
+
+        global go_exist_test
+        go_exist_test.destroy()
+
         print('check_correct_answer_1')
         go_test_aviable()
 
     def check_correct_answer_2():
         global check_answere_test
         check_answere_test = 0
+
+        global go_exist_test
+        go_exist_test.destroy()
+
         print('check_correct_answer_2')
         go_test_aviable()
 
     def check_correct_answer_3():
         global check_answere_test
         check_answere_test = 0
+
+        global go_exist_test
+        go_exist_test.destroy()
+
         print('check_correct_answer_3')
         go_test_aviable()
 
@@ -392,6 +404,7 @@ def test_available():
 
                 
                 if list_question_answer != 0:
+                    global go_exist_test
                     go_exist_test = Tk()
                     go_exist_test.title('Пройти тест')
                     # размер окна
@@ -464,6 +477,7 @@ def test_available():
                     print('')
                     print('не существует')
                     print('')
+                    messagebox.showinfo('Тест пройден', 'Тест пройден, больше вопросов нет)' )
 
 
             else:
