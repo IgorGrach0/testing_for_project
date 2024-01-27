@@ -478,10 +478,13 @@ def test_available():
                     
 
                 else:
+                    global test_record
                     print('')
                     print('не существует')
                     print('')
                     messagebox.showinfo('Тест пройден', 'Тест пройден, больше вопросов нет)' )
+                    test_record = 12
+                    main_window()
 
 
             else:
