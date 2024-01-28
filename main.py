@@ -503,6 +503,8 @@ def test_available():
 
                     ID_test = go_tests
 
+                    #добавить общее количество вопросов в тесте!
+
                     Two_test.record_col_cor_answere(right_answer, ID_test, user_name)
                     
 

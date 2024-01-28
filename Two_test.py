@@ -238,6 +238,9 @@ def conclusion_questions(take_test_ID, check_question_numbers):
 
 
 def record_col_cor_answere(right_answer, ID_test, user_name):
+    #добавить общее количество вопросов в тесте!
+
+
     import sqlite3
 
     con = sqlite3.connect('r_answ.db')
