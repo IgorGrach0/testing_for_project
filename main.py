@@ -340,11 +340,17 @@ def back_menu_test_available():
 
 
 def test_available():
+    global right_answer
+    right_answer = 0
     def check_correct_answer_1():
+        global list_question_answer
         global check_answere_test
         check_answere_test = 0
 
-        
+        if int(list_question_answer[6]) == 1:
+            global right_answer
+            right_answer += 1
+            print(right_answer)
 
         global go_exist_test
         go_exist_test.destroy()
@@ -353,9 +359,14 @@ def test_available():
         go_test_aviable()
 
     def check_correct_answer_2():
+        global list_question_answer
         global check_answere_test
         check_answere_test = 0
 
+        if int(list_question_answer[6]) == 2:
+            global right_answer
+            right_answer += 1
+            print(right_answer)
 
 
         global go_exist_test
@@ -365,8 +376,14 @@ def test_available():
         go_test_aviable()
 
     def check_correct_answer_3():
+        global list_question_answer
         global check_answere_test
         check_answere_test = 0
+
+        if int(list_question_answer[6]) == 3:
+            global right_answer
+            right_answer += 1
+            print(right_answer)
 
         global go_exist_test
         go_exist_test.destroy()
@@ -394,6 +411,7 @@ def test_available():
             if result_check_ID == True:
                 global available_w
                 global check_question_numbers
+                global list_question_answer
                 print('')
                 print('существует')
                 print('')
@@ -479,6 +497,17 @@ def test_available():
 
                 else:
                     global test_record
+                    global right_answer
+                    global user_name
+                    
+
+                    ID_test = go_tests
+
+                    Two_test.record_col_cor_answere(right_answer, ID_test, user_name)
+                    
+
+                    right_answer = 0
+                    check_question_numbers = 0
                     print('')
                     print('не существует')
                     print('')
@@ -572,6 +601,7 @@ def clicked():
 
     global username_entry
     global password_entry
+    global user_name
 
 
     cliked = "entrance"
@@ -584,7 +614,7 @@ def clicked():
     checking_symbol_in_username = username.find('/')
     checking_symbol_in_password = password.find('/')
 
-
+    user_name = username
 
     if checking_symbol_in_username == -1 and checking_symbol_in_password == -1:
 
@@ -636,6 +666,7 @@ def registration():
     global random_password
     global password_user
     global username_entry
+    global user_name
 
     def check_username_exists(username):
         cur.execute("SELECT * FROM users WHERE user_name = ?", (username,))
@@ -692,8 +723,11 @@ def registration():
             print(check_name)
 
             if check_name == True:
+                global user_name
+
                 print(True)
                 username_entry = username
+                user_name = username
                 main_window()
                 # messagebox.showinfo('Успешная авторизация', 'Вы успешно авторизованы!')
             else:

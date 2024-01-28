@@ -219,6 +219,8 @@ def conclusion_questions(take_test_ID, check_question_numbers):
     print('')
     print(type(data))
     print('')
+    print(data)
+    print('')
 
     if data:
 
@@ -232,3 +234,22 @@ def conclusion_questions(take_test_ID, check_question_numbers):
     
     else:
         return 0
+    
+
+
+def record_col_cor_answere(right_answer, ID_test, user_name):
+    import sqlite3
+
+    con = sqlite3.connect('r_answ.db')
+    cur = con.cursor()
+    ID = int(ID_test)
+    cur.execute("""CREATE TABLE IF NOT EXISTS r_answ(
+            IDtests INT,
+            usser_name TEXT,                        
+            right_answer TEXT
+        ) 
+        """)
+    new_test_record_list = [ID_test, user_name, right_answer]
+    print(new_test_record_list)
+    cur.execute("INSERT INTO r_answ VALUES(?, ?, ? );", new_test_record_list)
+    con.commit()
