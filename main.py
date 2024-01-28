@@ -181,6 +181,8 @@ def new_test():
 
     def exit_for_test():
         global contin
+        global test_number
+        messagebox.showinfo('ТЕСТ СОЗДАН'+'                     ', 'ID ТЕСТА:  ' + str(test_number) + '                         ')
         contin.destroy()
         main_window()
 
