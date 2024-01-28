@@ -4,6 +4,7 @@ import Two_test
 import tkinter
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 import sqlite3
 import random
 import string
@@ -505,7 +506,9 @@ def test_available():
 
                     #добавить общее количество вопросов в тесте!
 
-                    Two_test.record_col_cor_answere(right_answer, ID_test, user_name)
+
+
+                    Two_test.record_col_cor_answere(right_answer, ID_test, user_name, check_question_numbers)
                     
 
                     right_answer = 0
@@ -556,6 +559,88 @@ def test_available():
     send_btn2.place(x=500, y=10, width=150)
     available_w.mainloop()
     
+def check_result():
+    def check_test_result():
+        global go_tests_entry
+        
+
+        id_test_check = go_tests_entry.get()
+        id_test_check = str(id_test_check)
+        print("check_result")
+        
+        
+        IDtests = int(id_test_check)  # Здесь необходимо указать конкретный IDtests
+        results = Two_test.check_res_tests_us(IDtests)
+
+        root = Tk()
+        root.title("User Results")
+
+        # Создание прокручиваемого фрейма
+        canvas = Canvas(root)
+        canvas.pack(side=LEFT, fill=BOTH, expand=True)
+        scrollbar = ttk.Scrollbar(root, orient=VERTICAL, command=canvas.yview)
+        scrollbar.pack(side=RIGHT, fill=Y)
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        # Создание фрейма для размещения данных
+        frame = ttk.Frame(canvas)
+        canvas.create_window((0, 0), window=frame, anchor=NW)
+
+        # Добавление данных в фрейм
+        if results:
+            for i, result in enumerate(results):
+                username, answer, col_question = result
+                answer = int(int(answer) / int(col_question) * 100)
+                username_label = ttk.Label(frame, text=username)
+                username_label.grid(row=i, column=0, padx=10, pady=5)
+                answer_label = ttk.Label(frame, text=str(answer) + '%')
+                answer_label.grid(row=i, column=1, padx=10, pady=5)
+
+        # Обновление размеров канваса при изменении содержимого
+        frame.update_idletasks()
+        canvas.configure(scrollregion=canvas.bbox(ALL))
+
+        root.mainloop()
+        
+
+        
+
+
+
+
+    global go_tests_entry
+    global available_w
+    global main_w
+
+    main_w.destroy()
+
+    transition = 'Пройти тест'
+    font_header = ('Arial', 15)
+    font_entry = ('Arial', 12)
+    label_font = ('Arial', 11)
+    base_padding = {'padx': 10, 'pady': 8}
+    header_padding = {'padx': 10, 'pady': 12}
+
+    available_w = Tk()
+    available_w.title('Пройти тест')
+    # размер окна
+    available_w.geometry('680x400')
+    # можно ли изменять размер окна - нет
+    available_w.resizable(False, False)
+
+    go_tests_label = Label(available_w, text='Введите ID теста', font=label_font, **base_padding)
+    go_tests_label.place(x=200, y=120, width=250)
+
+    go_tests_entry = Entry(available_w, bg='#fff', fg='#444', font=font_entry)
+    go_tests_entry.place(x=50, y=170, width=600)
+    
+    send_btn = Button(available_w, text='Узнать результаты', command=check_test_result)
+    send_btn.place(x=470, y=320, width=200)
+
+    send_btn2 = Button(available_w, text='В меню', command=back_menu_test_available)
+    send_btn2.place(x=500, y=10, width=150)
+    available_w.mainloop()
+
 
 
 #основное окно
@@ -584,6 +669,8 @@ def main_window():
     send_btn.place(x=50, y=190, width=200)
     send_btn = Button(main_w, text='Пройти тест', command=test_available)
     send_btn.place(x=350, y=190, width=200)
+    send_btn = Button(main_w, text='Результаты теста', command=check_result)
+    send_btn.place(x=190, y=240, width=200)
     send_btn3 = Button(main_w, text='Вернуться к началу', command=restart_program)
     send_btn3.place(x=350, y=10, width=200)
     if test_record == 0:

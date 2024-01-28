@@ -237,10 +237,10 @@ def conclusion_questions(take_test_ID, check_question_numbers):
     
 
 
-def record_col_cor_answere(right_answer, ID_test, user_name):
+def record_col_cor_answere(right_answer, ID_test, user_name, check_question_numbers):
     #добавить общее количество вопросов в тесте!
 
-
+    check_question_numbers -= 1
     import sqlite3
 
     con = sqlite3.connect('r_answ.db')
@@ -249,10 +249,23 @@ def record_col_cor_answere(right_answer, ID_test, user_name):
     cur.execute("""CREATE TABLE IF NOT EXISTS r_answ(
             IDtests INT,
             usser_name TEXT,                        
-            right_answer TEXT
+            right_answer TEXT,
+            col_question TEXT
         ) 
         """)
-    new_test_record_list = [ID_test, user_name, right_answer]
+    new_test_record_list = [ID_test, user_name, right_answer, check_question_numbers]
     print(new_test_record_list)
-    cur.execute("INSERT INTO r_answ VALUES(?, ?, ? );", new_test_record_list)
+    cur.execute("INSERT INTO r_answ VALUES(?, ?, ?, ? );", new_test_record_list)
     con.commit()
+
+
+
+def check_res_tests_us(IDtests):
+    import sqlite3
+    connection = sqlite3.connect('r_answ.db')  # Здесь нужно указать путь к базе данных SQLite3
+    cursor = connection.cursor()
+    cursor.execute("SELECT usser_name, right_answer, col_question FROM r_answ WHERE IDtests = ?", (IDtests,))
+    results = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return results
